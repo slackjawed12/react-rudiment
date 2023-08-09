@@ -3,13 +3,14 @@ import logo from "./logo.svg";
 import MyHeader from "./MyHeader";
 import MyFooter from "./MyFooter";
 import React from "react";
+import Counter from "./Counter";
 
 function App() {
   let name = "홍길동";
   const number = 5;
   const style = {
     App: {
-      backgroundColor: "black",
+      backgroundColor: "white",
     },
     h2: {
       color: "red",
@@ -25,6 +26,7 @@ function App() {
       <b style={style.bold_text} id="bold_text">
         {number}는 {number % 2 ? "홀수" : "짝수"}
       </b>
+      <Counter />
       <MyFooter />
     </div>
   );
