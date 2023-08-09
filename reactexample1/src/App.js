@@ -6,11 +6,12 @@ import React from "react";
 
 function App() {
   return (
-    <>
+    <div className="App">
       <MyHeader />
-      <header className="App-header">안녕 리액트</header>
+      <h2>Hello React</h2>
+      <b id="bold_text">react.js</b>
       <MyFooter />
-    </>
+    </div>
   );
 }
 
