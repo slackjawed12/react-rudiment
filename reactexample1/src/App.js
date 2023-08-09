@@ -6,11 +6,11 @@ import React from "react";
 
 function App() {
   return (
-    <React.Fragment>
+    <>
       <MyHeader />
       <header className="App-header">안녕 리액트</header>
       <MyFooter />
-    </React.Fragment>
+    </>
   );
 }
 
