@@ -6,6 +6,7 @@ import React from "react";
 
 function App() {
   let name = "홍길동";
+  const number = 5;
   const style = {
     App: {
       backgroundColor: "black",
@@ -22,7 +23,7 @@ function App() {
       <MyHeader />
       <h2 style={style.h2}>Hello React, I'm {name}</h2>
       <b style={style.bold_text} id="bold_text">
-        react.js
+        {number}는 {number % 2 ? "홀수" : "짝수"}
       </b>
       <MyFooter />
     </div>
