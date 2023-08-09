@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ParityResult from "./ParityResult";
 const Counter = ({ initialValue }) => {
   const [count, setCount] = useState(initialValue);
   const onIncrease = () => {
@@ -13,6 +14,7 @@ const Counter = ({ initialValue }) => {
       <h2>{count}</h2>
       <button onClick={onIncrease}>+</button>
       <button onClick={onDecrease}>-</button>
+      <ParityResult count={count} />
     </div>
   );
 };
