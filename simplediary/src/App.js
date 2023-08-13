@@ -31,7 +31,7 @@ function App() {
     <div className="App">
       <h2>일기장</h2>
       <DiaryEditor />
-      <DiaryList diaryList={undefined} />
+      <DiaryList diaryList={dummyList} />
     </div>
   );
 }
