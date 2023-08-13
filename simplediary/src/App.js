@@ -50,6 +50,14 @@ function App() {
     setData(newDiaryList);
   };
 
+  const onEdit = (targetId, newContent) => {
+    setData(
+      data.map((it) =>
+        it.id === targetId ? { ...it, content: newContent } : it
+      )
+    );
+  };
+
   return (
     <div className="App">
       <h2>일기장</h2>
