@@ -24,7 +24,7 @@ const DiaryEditor = () => {
       alert("작성자는 최소 1글자 이상 입력해주세요.");
 
       // focus - DOM 요소 선택
-
+      authorInput.current.focus();
       return;
     }
 
