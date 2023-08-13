@@ -29,6 +29,7 @@ import DiaryList from "./DiaryList";
 
 function App() {
   const [data, setData] = useState([]);
+  // useState를 사용하면 리렌더링이 발생하므로 렌더링과 관련 없는 변수는 useRef 사용
   const dataId = useRef(0);
   const onCreate = (author, content, emotion) => {
     const createdAt = new Date().getTime();
@@ -43,7 +44,7 @@ function App() {
     setData([newItem, ...data]);
   };
 
-  const onDelete = (targetId) => {
+  const onRemove = (targetId) => {
     console.log(`${targetId}가 삭제되었습니다.`);
     const newDiaryList = data.filter((it) => it.id !== targetId);
     setData(newDiaryList);
@@ -53,7 +54,7 @@ function App() {
     <div className="App">
       <h2>일기장</h2>
       <DiaryEditor onCreate={onCreate} />
-      <DiaryList diaryList={data} onDelete={onDelete} />
+      <DiaryList diaryList={data} onRemove={onRemove} />
     </div>
   );
 }
