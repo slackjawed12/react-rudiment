@@ -43,11 +43,15 @@ function App() {
     setData([newItem, ...data]);
   };
 
+  const onDelete = (targetId) => {
+    console.log(`${targetId}`);
+  };
+
   return (
     <div className="App">
       <h2>일기장</h2>
       <DiaryEditor onCreate={onCreate} />
-      <DiaryList diaryList={data} />
+      <DiaryList diaryList={(onDelete, data)} />
     </div>
   );
 }
