@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 const DiaryEditor = () => {
   const authorInput = useRef();
-
+  const contentInput = useRef();
   const [state, setState] = useState({
     author: "",
     content: "",
@@ -32,7 +32,7 @@ const DiaryEditor = () => {
       alert("일기 본문은 최소 5글자 이상 입력해주세요.");
 
       // focus
-
+      contentInput.current.focus();
       return;
     }
 
@@ -52,6 +52,7 @@ const DiaryEditor = () => {
       </div>
       <div>
         <textarea
+          ref={contentInput}
           name="content"
           value={state.content}
           onChange={handleChangeState}
