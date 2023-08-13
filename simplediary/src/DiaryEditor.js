@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 const DiaryEditor = () => {
+  const authorInput = useRef();
+
   const [state, setState] = useState({
     author: "",
     content: "",
@@ -20,11 +22,17 @@ const DiaryEditor = () => {
     // 빈 입력을 검증한다.
     if (state.author.length < 1) {
       alert("작성자는 최소 1글자 이상 입력해주세요.");
+
+      // focus - DOM 요소 선택
+
       return;
     }
 
     if (state.content.length < 5) {
       alert("일기 본문은 최소 5글자 이상 입력해주세요.");
+
+      // focus
+
       return;
     }
 
@@ -36,6 +44,7 @@ const DiaryEditor = () => {
       <h2>오늘의 일기</h2>
       <div>
         <input
+          ref={authorInput}
           name="author"
           value={state.author}
           onChange={handleChangeState}
