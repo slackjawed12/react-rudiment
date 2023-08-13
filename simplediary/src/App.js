@@ -51,7 +51,7 @@ function App() {
     <div className="App">
       <h2>일기장</h2>
       <DiaryEditor onCreate={onCreate} />
-      <DiaryList diaryList={(onDelete, data)} />
+      <DiaryList diaryList={data} onDelete={onDelete} />
     </div>
   );
 }
