@@ -9,6 +9,13 @@ const DiaryItem = ({ author, content, createdAt, emotion, id }) => {
         <span className="date">{new Date(createdAt).toLocaleString()}</span>
       </div>
       <div className="content">{content}</div>
+      <button
+        onClick={() => {
+          console.log(id);
+        }}
+      >
+        삭제하기
+      </button>
     </div>
   );
 };
