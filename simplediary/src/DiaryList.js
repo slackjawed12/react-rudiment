@@ -1,3 +1,5 @@
+import DiaryItem from "./DiaryItem";
+
 const DiaryList = ({ diaryList }) => {
   console.log(diaryList);
   return (
@@ -6,12 +8,7 @@ const DiaryList = ({ diaryList }) => {
       <h4>{diaryList.length}개의 일기가 있습니다.</h4>
       <div>
         {diaryList.map((it) => (
-          <div key={it.id}>
-            <div>작성자 : {it.author} </div>
-            <div>일기내용 : {it.content} </div>
-            <div>감정점수 : {it.emotion} </div>
-            <div>작성시각 : {it.createdAt} </div>
-          </div>
+          <DiaryItem key={it.id} {...it} />
         ))}
       </div>
     </div>
