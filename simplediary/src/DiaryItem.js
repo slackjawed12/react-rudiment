@@ -1,9 +1,19 @@
-import { useState } from "react";
-const DiaryItem = ({ author, content, createdAt, emotion, id, onRemove }) => {
+import { useRef, useState } from "react";
+const DiaryItem = ({
+  author,
+  content,
+  createdAt,
+  emotion,
+  id,
+  onRemove,
+  onEdit,
+}) => {
   const [isEdit, setIsEdit] = useState(false);
   const toggleIsEdit = () => setIsEdit(!isEdit);
   // 수정 중인 내용
   const [localContent, setLocalContent] = useState(content);
+  const localContentInput = useRef();
+
   const handleRemove = () => {
     if (window.confirm(`${id}번째 일기를 정말 삭제하시겠습니까?`)) {
       onRemove(id);
@@ -13,6 +23,18 @@ const DiaryItem = ({ author, content, createdAt, emotion, id, onRemove }) => {
   const handleQuitEdit = () => {
     setIsEdit(false);
     setLocalContent(content);
+  };
+
+  const handleEdit = () => {
+    if (localContent.length < 5) {
+      localContentInput.current.focus();
+      return;
+    }
+
+    if (window.confirm(`${id}번째 일기를 수정하시겠습니까?`)) {
+      setIsEdit(false);
+      onEdit(id, localContent);
+    }
   };
 
   return (
@@ -28,6 +50,7 @@ const DiaryItem = ({ author, content, createdAt, emotion, id, onRemove }) => {
         {isEdit ? (
           <>
             <textarea
+              ref={localContentInput}
               value={localContent}
               onChange={(e) => setLocalContent(e.target.value)}
             />
@@ -39,7 +62,7 @@ const DiaryItem = ({ author, content, createdAt, emotion, id, onRemove }) => {
       {isEdit ? (
         <>
           <button onClick={handleQuitEdit}>수정 취소</button>
-          <button>수정 완료</button>
+          <button onClick={handleEdit}>수정 완료</button>
         </>
       ) : (
         <>
