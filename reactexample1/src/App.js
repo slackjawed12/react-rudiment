@@ -4,6 +4,7 @@ import MyHeader from "./MyHeader";
 import MyFooter from "./MyFooter";
 import React from "react";
 import Counter from "./Counter";
+import Container from "./Container";
 
 function App() {
   let name = "홍길동";
@@ -29,7 +30,7 @@ function App() {
   };
 
   return (
-    <div className="App" style={style.App}>
+    <Container>
       <MyHeader />
       <h2 style={style.h2}>Hello React, I'm {name}</h2>
       <b style={style.bold_text} id="bold_text">
@@ -37,7 +38,7 @@ function App() {
       </b>
       <Counter {...counterProps} />
       <MyFooter />
-    </div>
+    </Container>
   );
 }
 
