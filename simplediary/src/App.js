@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import DiaryEditor from "./DiaryEditor";
 import DiaryList from "./DiaryList";
@@ -27,11 +27,24 @@ import LifeCycle from "./LifeCycle";
 //     createdAt: new Date().getTime(),
 //   },
 // ];
+// api : https://jsonplaceholder.typicode.com/comments
 
 function App() {
   const [data, setData] = useState([]);
   // useState를 사용하면 리렌더링이 발생하므로 렌더링과 관련 없는 변수는 useRef 사용
   const dataId = useRef(0);
+
+  const getData = async () => {
+    const res = await fetch(
+      "https://jsonplaceholder.typicode.com/comments"
+    ).then((res) => res.json());
+    console.log(res);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   const onCreate = (author, content, emotion) => {
     const createdAt = new Date().getTime();
     const newItem = {
