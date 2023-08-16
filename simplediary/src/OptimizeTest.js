@@ -1,18 +1,19 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const CountView = ({ count }) => {
+const CountView = React.memo(({ count }) => {
   useEffect(() => {
     console.log(`update :: count : ${count}`);
   });
   return <div>{count}</div>;
-};
+});
 
-const TextView = ({ text }) => {
+const TextView = React.memo(({ text }) => {
   useEffect(() => {
     console.log(`update :: text : ${text}`);
   });
   return <div>{text}</div>;
-};
+});
+
 const OptimizeTest = () => {
   const [count, setCount] = useState(1);
   const [text, setText] = useState("");
