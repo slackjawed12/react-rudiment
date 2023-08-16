@@ -82,9 +82,27 @@ function App() {
     );
   };
 
+  const getDiaryAnalysis = () => {
+    console.log("일기 분석 시작");
+
+    const goodCount = data.filter((it) => it.emotion >= 3).length;
+    const badCount = data.length - goodCount;
+
+    const goodRatio = (goodCount / data.length) * 100;
+    return { goodCount, badCount, goodRatio };
+  };
+
+  // 처음 마운트 시 두번 동작한다. 처음 1번, setData 이후 1번 리렌더링되므로
+  // 수정 해도 리렌더링 되므로 또 동작한다.
+  const { goodCount, badCount, goodRatio } = getDiaryAnalysis();
+
   return (
     <div className="App">
       <DiaryEditor onCreate={onCreate} />
+      <div>전체 일기 : {data.length}</div>
+      <div>기분 좋은 일기 개수 : {goodCount}</div>
+      <div>기분 나쁜 일기 개수 : {badCount}</div>
+      <div>기분 좋은 일기 비율 : {goodRatio}</div>
       <DiaryList diaryList={data} onRemove={onRemove} onEdit={onEdit} />
     </div>
   );
