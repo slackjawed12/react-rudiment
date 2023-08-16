@@ -14,7 +14,12 @@ const CounterB = React.memo(({ obj }) => {
   return <div>{obj.count}</div>;
 });
 
-// 결과 : 객체 props를 전달한 CounterB는 업데이트 된다. default로 얕은비교를 하기 때문
+const areEqual = (prevProps, nextProps) => {
+  return prevProps.obj.count === nextProps.obj.count;
+};
+
+const MemoizedCounterB = React.memo(CounterB, areEqual);
+
 const OptimizeTest = () => {
   const [count, setCount] = useState(1);
   const [obj, setObj] = useState({
@@ -30,7 +35,7 @@ const OptimizeTest = () => {
       </div>
       <div>
         <h2>count B</h2>
-        <CounterB obj={obj} />
+        <MemoizedCounterB obj={obj} />
         <button
           onClick={() =>
             setObj({
