@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import "./App.css";
 import DiaryEditor from "./DiaryEditor";
 import DiaryList from "./DiaryList";
@@ -82,7 +82,8 @@ function App() {
     );
   };
 
-  const getDiaryAnalysis = () => {
+  // data.length가 변할때만 callback이 호출된다.
+  const getDiaryAnalysis = useMemo(() => {
     console.log("일기 분석 시작");
 
     const goodCount = data.filter((it) => it.emotion >= 3).length;
@@ -90,11 +91,9 @@ function App() {
 
     const goodRatio = (goodCount / data.length) * 100;
     return { goodCount, badCount, goodRatio };
-  };
+  }, [data.length]);
 
-  // 처음 마운트 시 두번 동작한다. 처음 1번, setData 이후 1번 리렌더링되므로
-  // 수정 해도 리렌더링 되므로 또 동작한다.
-  const { goodCount, badCount, goodRatio } = getDiaryAnalysis();
+  const { goodCount, badCount, goodRatio } = getDiaryAnalysis;
 
   return (
     <div className="App">
