@@ -1,5 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 const DiaryEditor = ({ onCreate }) => {
+  // React.memo를 사용해도 처음에 두번 발생한다
+  // 이후 일기를 삭제할 때도 발생 - prop이 객체이기 때문.
+  useEffect(() => {
+    console.log("diaryeditor 렌더링");
+  });
   const authorInput = useRef();
   const contentInput = useRef();
   const [state, setState] = useState({
