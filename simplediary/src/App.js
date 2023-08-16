@@ -40,7 +40,7 @@ function App() {
       id: dataId.current,
     };
     dataId.current += 1;
-    setData([newItem, ...data]);
+    setData((data) => [newItem, ...data]);
   }, []);
 
   const onRemove = (targetId) => {
