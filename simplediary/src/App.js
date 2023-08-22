@@ -1,4 +1,4 @@
-import {
+import React, {
   useCallback,
   useEffect,
   useMemo,
@@ -33,11 +33,12 @@ const reducer = (state, action) => {
   }
 };
 
-function App() {
-  // const [data, setData] = useState([]);
-  // useState를 사용하면 리렌더링이 발생하므로 렌더링과 관련 없는 변수는 useRef 사용
+// 다른 컴포넌트들이 사용해야하므로 export
+export const DiaryStateContext = React.createContext();
 
+function App() {
   const [data, dispatch] = useReducer(reducer, []);
+  // useState를 사용하면 리렌더링이 발생하므로 렌더링과 관련 없는 변수는 useRef 사용
   const dataId = useRef(0);
 
   const getData = async () => {
@@ -97,14 +98,16 @@ function App() {
   const { goodCount, badCount, goodRatio } = getDiaryAnalysis;
 
   return (
-    <div className="App">
-      <DiaryEditor onCreate={onCreate} />
-      <div>전체 일기 : {data.length}</div>
-      <div>기분 좋은 일기 개수 : {goodCount}</div>
-      <div>기분 나쁜 일기 개수 : {badCount}</div>
-      <div>기분 좋은 일기 비율 : {goodRatio}</div>
-      <DiaryList diaryList={data} onRemove={onRemove} onEdit={onEdit} />
-    </div>
+    <DiaryStateContext.Provider>
+      <div className="App">
+        <DiaryEditor onCreate={onCreate} />
+        <div>전체 일기 : {data.length}</div>
+        <div>기분 좋은 일기 개수 : {goodCount}</div>
+        <div>기분 나쁜 일기 개수 : {badCount}</div>
+        <div>기분 좋은 일기 비율 : {goodRatio}</div>
+        <DiaryList diaryList={data} onRemove={onRemove} onEdit={onEdit} />
+      </div>
+    </DiaryStateContext.Provider>
   );
 }
 
