@@ -87,6 +87,11 @@ function App() {
     dispatch({ type: "EDIT", targetId, newContent });
   }, []);
 
+  // useMemo를 활용하지 않으면 App 컴포넌트 재생성 시 dispatch 객체도 재생성되므로 최적화가 되지 않는다.
+  const memoizedDispatches = useMemo(() => {
+    return { onCreate, onRemove, onEdit };
+  }, []);
+
   // data.length가 변할때만 callback이 호출된다.
   const getDiaryAnalysis = useMemo(() => {
     const goodCount = data.filter((it) => it.emotion >= 3).length;
@@ -100,14 +105,14 @@ function App() {
 
   return (
     <DiaryStateContext.Provider value={data}>
-      <DiaryDispatchContext.Provider>
+      <DiaryDispatchContext.Provider value={memoizedDispatches}>
         <div className="App">
-          <DiaryEditor onCreate={onCreate} />
+          <DiaryEditor />
           <div>전체 일기 : {data.length}</div>
           <div>기분 좋은 일기 개수 : {goodCount}</div>
           <div>기분 나쁜 일기 개수 : {badCount}</div>
           <div>기분 좋은 일기 비율 : {goodRatio}</div>
-          <DiaryList onRemove={onRemove} onEdit={onEdit} />
+          <DiaryList />
         </div>
       </DiaryDispatchContext.Provider>
     </DiaryStateContext.Provider>
