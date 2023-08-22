@@ -105,7 +105,7 @@ function App() {
         <div>기분 좋은 일기 개수 : {goodCount}</div>
         <div>기분 나쁜 일기 개수 : {badCount}</div>
         <div>기분 좋은 일기 비율 : {goodRatio}</div>
-        <DiaryList diaryList={data} onRemove={onRemove} onEdit={onEdit} />
+        <DiaryList onRemove={onRemove} onEdit={onEdit} />
       </div>
     </DiaryStateContext.Provider>
   );
