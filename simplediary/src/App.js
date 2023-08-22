@@ -16,12 +16,17 @@ const reducer = (state, action) => {
     case "INIT": {
       return action.data;
     }
-    case "CREATE":
-      break;
-    case "REMOVE":
-      break;
-    case "EDIT":
-      break;
+    case "CREATE": {
+      return [...state, action.data];
+    }
+    case "REMOVE": {
+      return state.filter((it) => it.id !== action.targetId);
+    }
+    case "EDIT": {
+      return state.map((it) =>
+        it.id === action.targetId ? { ...it, content: action.newContent } : it
+      );
+    }
     // default 에서는 상태변화없이 이전 상태 반환
     default:
       return state;
@@ -58,28 +63,26 @@ function App() {
   }, []);
 
   const onCreate = useCallback((author, content, emotion) => {
-    const createdAt = new Date().getTime();
-    const newItem = {
-      author,
-      content,
-      emotion,
-      createdAt,
-      id: dataId.current,
-    };
+    dispatch({
+      type: "CREATE",
+      data: {
+        author,
+        content,
+        emotion,
+        createdAt: new Date().getTime(),
+        id: dataId.current,
+      },
+    });
+
     dataId.current += 1;
-    setData((data) => [newItem, ...data]);
   }, []);
 
   const onRemove = useCallback((targetId) => {
-    setData((data) => data.filter((it) => it.id !== targetId));
+    dispatch({ type: "REMOVE", targetId });
   }, []);
 
   const onEdit = useCallback((targetId, newContent) => {
-    setData((data) =>
-      data.map((it) =>
-        it.id === targetId ? { ...it, content: newContent } : it
-      )
-    );
+    dispatch({ type: "EDIT", targetId, newContent });
   }, []);
 
   // data.length가 변할때만 callback이 호출된다.
