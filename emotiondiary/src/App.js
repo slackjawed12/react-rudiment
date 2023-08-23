@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import New from "./pages/New";
 import Edit from "./pages/Edit";
 import Diary from "./pages/Diary";
+import RouteTest from "./components/RouterTest";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Route path="/edit" element={<Edit />} />
           <Route path="/diary" element={<Diary />} />
         </Routes>
-        <a href={"/new"}>NEW로 이동</a>
+        <RouteTest />
       </div>
     </BrowserRouter>
   );
