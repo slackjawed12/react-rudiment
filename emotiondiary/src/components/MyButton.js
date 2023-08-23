@@ -1,7 +1,14 @@
 export const MyButton = ({ text, type, onClick }) => {
   return (
-    <button className="MyButton" onClick={onClick}>
+    <button
+      className={["MyButton", `MyButton_${type}`].join(" ")}
+      onClick={onClick}
+    >
       {text}
     </button>
   );
+};
+
+MyButton.defaultProps = {
+  type: "default",
 };
