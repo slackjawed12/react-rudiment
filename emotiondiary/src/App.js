@@ -17,6 +17,7 @@ function App() {
           <Route path="/edit" element={<Edit />} />
           <Route path="/diary" element={<Diary />} />
         </Routes>
+        <a href={"/new"}>NEW로 이동</a>
       </div>
     </BrowserRouter>
   );
