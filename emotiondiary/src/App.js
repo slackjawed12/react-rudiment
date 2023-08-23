@@ -18,7 +18,17 @@ function App() {
         <MyButton
           text={"버튼"}
           onClick={() => alert("버튼 클릭")}
-          type={"POSITIVE"}
+          type={"positive"}
+        />
+        <MyButton
+          text={"버튼"}
+          onClick={() => alert("버튼 클릭")}
+          type={"negative"}
+        />
+        <MyButton
+          text={"버튼"}
+          onClick={() => alert("버튼 클릭")}
+          type={"default"}
         />
         <img src={process.env.PUBLIC_URL + `/assets/emotion1.png`} />
         <img src={process.env.PUBLIC_URL + `/assets/emotion2.png`} />
