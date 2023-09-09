@@ -15,3 +15,5 @@ export const MyButton = ({ text, type, onClick }) => {
 MyButton.defaultProps = {
   type: "default",
 };
+
+export default MyButton;
