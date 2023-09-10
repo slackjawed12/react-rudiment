@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import MyButton from "../components/MyButton";
 import MyHeader from "../components/MyHeader";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import EmotionItem from "./EmotionItem";
 import { DiaryDispatchContext } from "../App";
 import { getStringDate } from "../util/Date";
@@ -19,9 +19,10 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
   const { onCreate, onEdit, onRemove } = useContext(DiaryDispatchContext);
 
-  const handleClickEmotion = (emotion) => {
+  const handleClickEmotion = useCallback((emotion) => {
+    // 가장 최신 state를 참조할 필요는 없으므로 함수형 업데이트가 필요하지 않다.
     setEmotion(emotion);
-  };
+  }, []);
 
   const handleRemove = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {

@@ -1,22 +1,20 @@
-const EmotionItem = ({
-  emotion_id,
-  emotion_img,
-  emotion_description,
-  onClick,
-  isSelected,
-}) => {
-  return (
-    <div
-      onClick={() => onClick(emotion_id)}
-      className={[
-        "EmotionItem",
-        isSelected ? `EmotionItem_on_${emotion_id}` : `EmotionItem_off`,
-      ].join(" ")}
-    >
-      <img src={emotion_img} />
-      <span>{emotion_description}</span>
-    </div>
-  );
-};
+import React from "react";
 
-export default EmotionItem;
+const EmotionItem = React.memo(
+  ({ emotion_id, emotion_img, emotion_description, onClick, isSelected }) => {
+    return (
+      <div
+        onClick={() => onClick(emotion_id)}
+        className={[
+          "EmotionItem",
+          isSelected ? `EmotionItem_on_${emotion_id}` : `EmotionItem_off`,
+        ].join(" ")}
+      >
+        <img src={emotion_img} />
+        <span>{emotion_description}</span>
+      </div>
+    );
+  }
+);
+
+export default React.memo(EmotionItem);
