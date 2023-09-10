@@ -50,6 +50,8 @@ const DiaryList = ({ diaryList }) => {
     const compare = (a, b) => {
       if (sortType === "latest") {
         return parseInt(b.date) - parseInt(a.date);
+      } else {
+        return parseInt(a.date) - parseInt(b.date);
       }
     };
     const copyList = JSON.parse(JSON.stringify(diaryList));
