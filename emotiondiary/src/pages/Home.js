@@ -44,9 +44,7 @@ const Home = () => {
     );
   };
 
-  useEffect(() => {
-    console.log(currentMonthDiaryData);
-  }, [currentMonthDiaryData]);
+  useEffect(() => {}, [currentMonthDiaryData]);
 
   return (
     <div>
