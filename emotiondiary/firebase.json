@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "site": "slackjawed12-react-project",
+    "public": "build",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
